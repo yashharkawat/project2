@@ -22,14 +22,124 @@ const arr=[
 ]
 var cur=arr[0];
 
-const fun=(txt)=>{
-    var newtxt=txt;
-    if(txt.length>30)
+// findwidth=(txt,fnt)=>
+// {
+//     var ele=document.createElement("div");
+//     document.body.appendChild("ele");
+//     ele.style.fontSize=""+fnt+"px";
+//     ele.style.fontWeight=500;
+//     ele.style.position="absolute";
+//     ele.style.left=-1000;
+//     ele.style.top=-1000;
+//     ele.textContent=txt;
+    
+//     //var height = (test.clientHeight + 1) + "px";
+//     var width = ele.clientWidth
+//     document.body.removeChild("ele");
+//     ele=null;
+//     return  width;
+// }
+getTextWidth=(txt)=> {
+  
+    let text = document.createElement("span");
+    document.body.appendChild(text);
+
+    text.style.fontSize = 16 + "px";
+    text.style.height = 'auto';
+    text.style.width = 'auto';
+    text.style.position = 'absolute';
+    text.style.whiteSpace = 'no-wrap';
+    text.innerHTML = txt;
+
+    width = Math.ceil(text.clientWidth);
+    document.body.removeChild(text);
+    return width;
+ }
+// const getTextWidth = (pText, pFontSize) => {
+//     var lDiv = document.createElement("div");
+    
+  
+//     lDiv.style.fontSize = "" + pFontSize + "px";
+//     lDiv.style.fontWeight = 500;
+//     lDiv.style.position = "absolute";
+//     lDiv.style.left = -1000;
+//     lDiv.style.top = -1000;
+//     lDiv.textContent = pText;
+//      document.body.appendChild(lDiv);
+//     //console.log(lDiv);
+//     let width = lDiv.clientWidth;
+  
+//     document.body.removeChild(lDiv);
+//     lDiv = null;
+  
+//     return width;
+//   };
+// console.log(getTextWidth("asnjad",16));
+const binsearch1=(txt,lo,hi,maxlen)=>
+{
+    let ans=hi;
+    while(lo<=hi)
     {
-        newtxt=txt.substring(0,15)+"...."+txt.substring(txt.length-15,txt.length);
+        let mid=Math.floor((lo+hi)/2);
+        let ss=txt.substring(0,mid);
+        let len=getTextWidth(ss,16);
+        //console.log(getTextWidth(ss,16));
+        if(len>maxlen)
+        {
+            hi=mid-1;
+        }
+        else{
+            lo=mid+1;
+            ans=mid;
+
+        }
     }
-    return newtxt;
+    return ans;
 }
+const binsearch2=(txt,lo,hi,maxlen)=>
+{
+    let ans=lo;
+    while(lo<=hi)
+    {
+        let mid=Math.floor((lo+hi)/2);
+        let ss=txt.substring(mid,txt.length);
+        let len=getTextWidth(ss,16);
+        //console.log(getTextWidth(ss,16));
+        if(len>maxlen)
+        {
+            lo=mid+1;
+        }
+        else{
+            hi=mid-1;
+            ans=mid;
+
+        }
+    }
+    return ans;
+}
+
+const fun=(txt)=>{
+    const obj=document.getElementById("sidebar");
+    var wid=parseInt(obj.offsetWidth);
+    wid=wid*0.65;
+    let num1=binsearch1(txt,0,txt.length,Math.floor(wid/2));
+    let num2=binsearch2(txt,0,txt.length,Math.floor(wid/2));
+    console.log(num1,num2,txt);
+    if(num1<num2)
+    {
+        return txt.substring(0,num1)+"..."+txt.substring(num2,txt.length);
+    }
+    return txt;
+}
+    
+// const fun=(txt)=>{
+//     var newtxt=txt;
+//     if(txt.length>30)
+//     {
+//         newtxt=txt.substring(0,15)+"...."+txt.substring(txt.length-15,txt.length);
+//     }
+//     return newtxt;
+// }
 const short=()=>{
     arr.forEach((item)=>{
         item.shortname=fun(item.title);
@@ -140,7 +250,8 @@ const init =()=>{
     short();
     update();
     titleChange();
-    
+    //var  sss="djhbasjds";
+    //console.log(sss.width);
 }
 document.addEventListener("keydown",(e)=>{
     //console.log(e);
@@ -160,5 +271,6 @@ document.addEventListener("keydown",(e)=>{
 
 window.onload=init;
 
+// funct("my  name is  yashjdadskndkskasn");
 
 
