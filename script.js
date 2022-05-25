@@ -22,23 +22,6 @@ const arr=[
 ]
 var cur=arr[0];
 
-// findwidth=(txt,fnt)=>
-// {
-//     var ele=document.createElement("div");
-//     document.body.appendChild("ele");
-//     ele.style.fontSize=""+fnt+"px";
-//     ele.style.fontWeight=500;
-//     ele.style.position="absolute";
-//     ele.style.left=-1000;
-//     ele.style.top=-1000;
-//     ele.textContent=txt;
-    
-//     //var height = (test.clientHeight + 1) + "px";
-//     var width = ele.clientWidth
-//     document.body.removeChild("ele");
-//     ele=null;
-//     return  width;
-// }
 getTextWidth=(txt)=> {
   
     let text = document.createElement("span");
@@ -54,28 +37,9 @@ getTextWidth=(txt)=> {
     width = Math.ceil(text.clientWidth);
     document.body.removeChild(text);
     return width;
- }
-// const getTextWidth = (pText, pFontSize) => {
-//     var lDiv = document.createElement("div");
-    
-  
-//     lDiv.style.fontSize = "" + pFontSize + "px";
-//     lDiv.style.fontWeight = 500;
-//     lDiv.style.position = "absolute";
-//     lDiv.style.left = -1000;
-//     lDiv.style.top = -1000;
-//     lDiv.textContent = pText;
-//      document.body.appendChild(lDiv);
-//     //console.log(lDiv);
-//     let width = lDiv.clientWidth;
-  
-//     document.body.removeChild(lDiv);
-//     lDiv = null;
-  
-//     return width;
-//   };
-// console.log(getTextWidth("asnjad",16));
-const binsearch1=(txt,lo,hi,maxlen)=>
+}
+
+ const binsearch1=(txt,lo,hi,maxlen)=>
 {
     let ans=hi;
     while(lo<=hi)
