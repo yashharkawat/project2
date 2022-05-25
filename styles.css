@@ -1,0 +1,60 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+.removeCom{
+    cursor: pointer;
+    
+}
+.thumbnail{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+}
+.photo{
+    width: 300px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.side{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: antiquewhite;
+}
+.removeCom{
+    color: brown;
+}
+.curitem{
+    background-color: aqua;
+}
+.item{
+    cursor: pointer;
+}
+
+.centerbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.images{
+    height:80vh;
+    width:40vw;
+}
+.texts{
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
